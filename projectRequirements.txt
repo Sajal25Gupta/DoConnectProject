@@ -1,0 +1,9 @@
+Frontend:
+  Login,Register Form
+  DoConnect UI
+  
+Backend:
+  Database creation
+  SpringBoot application
+  Microservices
+  
