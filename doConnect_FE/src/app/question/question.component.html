@@ -1,0 +1,35 @@
+<br />
+<br />
+<br />
+<mat-card class="example-card">
+    <mat-card-title>Ask a Question</mat-card-title>
+    <br />
+    <br />
+    
+    <h1 mat-dialog-title>Question</h1>
+    <div mat-dialog-content>
+        <form class="example-form">
+            <mat-form-field appearance="fill">
+                <input matInput placeholder="Title" type="text" required name="title" >
+            </mat-form-field>
+            <br />
+    
+            <mat-form-field appearance="fill">
+                <textarea matInput placeholder="Question Body" required name="question" rows="5" ></textarea>
+            </mat-form-field>
+            <br />
+
+            
+            <div class="form-outline mb-4">
+                <input type="file" id="image" class="form-control"   (change)="selectFile($event)" />
+            </div>
+            <br />
+            <br />
+            
+           
+
+
+            <button mat-raised-button type="submit" color="primary">Save question</button>
+        </form>
+    </div>
+</mat-card>

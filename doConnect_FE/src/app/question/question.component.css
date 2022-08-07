@@ -1,0 +1,39 @@
+.example-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-form > * {
+    width: 100%;
+}
+
+.close{
+    width: 100%;
+}
+
+.example-card {
+    
+
+    text-align: center;
+
+}
+
+mat-card{
+
+    
+    width: 600px;
+    height: 480px;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+     
+    
+}
+
+#image{
+    display: flex;
+    flex-direction: column;
+}
+
+
+

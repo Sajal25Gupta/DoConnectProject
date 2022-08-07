@@ -1,0 +1,26 @@
+<div class="main">
+<mat-card class="example-card">
+    <mat-card-title>Answer the question</mat-card-title>
+    <br />
+    
+    <h1 mat-dialog-title>Answer</h1>
+    <div mat-dialog-content>
+        <form class="example-form">
+    
+            <mat-form-field class = "body" appearance="fill">
+                <textarea matInput placeholder="Answer Body" required name="question" rows="10" ></textarea>
+            </mat-form-field>
+
+            <mat-card>
+            <div class="form-outline mb-4">
+                <h3>Attach file: </h3>
+                <input type="file" id="image" class="form-control"   (change)="selectFile($event)" />
+            </div>
+        </mat-card>
+        <br />
+
+          <div class = "button">  <button mat-raised-button type="submit" color="primary">Submit Answer</button> </div>
+        </form>
+    </div>
+</mat-card>
+</div>
