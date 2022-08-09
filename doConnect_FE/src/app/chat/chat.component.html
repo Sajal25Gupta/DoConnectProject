@@ -1,0 +1,54 @@
+<div class="box">
+<app-header [inHome]="true" [links]="['UserDashBoard','QuestionDashBoard',  'AskQuestion']"></app-header>
+    <div style="max-height: 50vh; max-width: 50vw; margin-top: 10vh; margin-left: 25vw">
+      <div style="margin-bottom: 5vh">
+        <mat-card>
+          <mat-card-title class="card">Welcome to chat</mat-card-title>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card class="card1">
+          <mat-card-title>Sent</mat-card-title>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+            <mat-action-list>
+              <mat-list-item *ngFor="let m of messageData"
+                >{{ m.message }}
+              </mat-list-item>
+            </mat-action-list>
+          </mat-card-content>
+        </mat-card>
+        <mat-card  class="card2">
+          <mat-card-title>Received</mat-card-title>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+            <mat-action-list>
+              <mat-list-item *ngFor="let m of recivedMessageData">
+                {{ m.message }}
+              </mat-list-item>
+            </mat-action-list>
+          </mat-card-content>
+        </mat-card>
+        <div style="margin-top: 1vh">
+          <mat-card >
+            <mat-form-field style="width: 41vw" appearance="fill">
+              <mat-label>Type Your Message Here</mat-label>
+              <input matInput type="text" name="text" [(ngModel)]="message" />
+            </mat-form-field>
+            
+            <button mat-raised-button color="accent" style="margin-left: 1vw" (click)="sendMessage()">Send</button>
+
+          </mat-card>
+        </div>
+        <mat-card class="card3">
+          <mat-card-title>Users</mat-card-title>
+          <mat-divider></mat-divider>
+        </mat-card>
+        <mat-card class="card4">
+          <mat-action-list>
+            <button mat-list-item *ngFor="let i of uniqueUsers" (click)="changeMessages(i)">{{ i }}</button>
+          </mat-action-list>
+        </mat-card>
+      </div>
+    </div>
+    </div>

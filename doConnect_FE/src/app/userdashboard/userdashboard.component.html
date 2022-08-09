@@ -1,0 +1,20 @@
+<app-header [inHome]="true" [links]="['QuestionDashBoard', 'AskQuestion', 'Chat']"></app-header>
+<div class="center">
+<div class="w3-container center">
+  <div class="w3-card-4 w3-dark-grey" style="width:50%">
+
+    <div class="w3-container w3-center">
+      <h1> {{user}} , Let's Dive into the world of questions!</h1>
+      <img src="https://www.quotemaster.org/images/91/91a1106daac97ce0e243c6e26495a9c4.png" alt="Avatar" style="width:80%">
+      <br/>
+      <div class="w3-section">
+        
+        <button mat-raised-button color="primary"><a routerLink="/AskQuestion" style="text-decoration: none; color:aliceblue;"> <h3> ASK</h3> </a></button> &nbsp; &nbsp;
+        <button mat-raised-button color="primary"><a routerLink="/QuestionDashBoard" style="text-decoration: none;color:aliceblue;"> <h3> User Questions</h3> </a></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<app-footer></app-footer>

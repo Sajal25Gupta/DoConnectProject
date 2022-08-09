@@ -1,0 +1,15 @@
+.c1{
+    margin-left: 40%;
+}
+
+.c2{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.b1{
+    margin-top: 5%; 
+    margin-left: 30%;
+    background-color: #4267B2;
+}

@@ -1,0 +1,43 @@
+package com.wipro.DoConnect.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+import com.wipro.DoConnect.entities.Admin;
+import com.wipro.DoConnect.entities.Answer;
+import com.wipro.DoConnect.entities.Question;
+import com.wipro.DoConnect.repository.AdminRepository;
+
+@Service
+public class EmailService {
+
+	@Autowired
+	private JavaMailSender javaMailSender;
+
+	@Autowired
+	private AdminRepository adminRepo;
+
+	public void sendEmailForNewQuestion(Question questions) {
+		Admin adminAccount = adminRepo.findFirstByEmail("mokaphalgun59@gmail.com");
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(adminAccount.getEmail());
+		msg.setSubject("New Question Posted by " + questions.getUser().getName());
+		msg.setText("Topic : " + questions.getTitle() + System.lineSeparator() + questions.getBody()
+				+ System.lineSeparator() + "Date : " + questions.getCreatedDate());
+		javaMailSender.send(msg);
+
+	}
+
+	public void sendEmailForNewAnswer(Question questions, Answer answer) {
+		Admin adminAccount = adminRepo.findFirstByEmail("mokaphalgun59@gmail.com");
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(adminAccount.getEmail());
+		msg.setSubject(answer.getUser().getName() + " " + " answered a question");
+		msg.setText("Question : " + questions.getTitle() + System.lineSeparator() + "Answer : " + answer.getBody()
+				+ System.lineSeparator() + "Date : " + answer.getCreatedDate());
+		javaMailSender.send(msg);
+	}
+
+}
