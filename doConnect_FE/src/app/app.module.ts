@@ -21,6 +21,9 @@ import { ChatComponent } from './chat/chat.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { NewquestionComponent } from './newquestion/newquestion.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { UsercrudComponent } from './usercrud/usercrud.component';
+import { AdmincrudComponent } from './admincrud/admincrud.component';
+
 
 
 
@@ -38,6 +41,8 @@ import {MatListModule} from '@angular/material/list';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTableModule} from '@angular/material/table';
+import { UpdateadminComponent } from './updateadmin/updateadmin.component';
 
 
 @NgModule({
@@ -56,7 +61,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ChatComponent,
     AdmindashboardComponent,
     NewquestionComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    UsercrudComponent,
+    AdmincrudComponent,
+    UpdateadminComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +84,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatIconModule,
     MatListModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
 ],
   providers: [],
   bootstrap: [AppComponent]

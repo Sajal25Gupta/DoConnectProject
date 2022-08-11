@@ -21,10 +21,11 @@ public class UserController {
         String email = body.get("email");
         String password = body.get("password");
         String role = body.get("role");
+        System.out.println(userservice.isExists(email,password));
         User user = userservice.findByPassword(password);
         if (role.equals("admin") && user != null) {
             return "admin";
-        } else if (userservice.isExists(email, password)) {
+        } else if (userservice.isExists(email,password)) {
             return "user";
         } else {
             return "no";
@@ -69,4 +70,58 @@ public class UserController {
         }
         return "no";
     }
+    
+    @PostMapping("/updateuser")
+    private String updateUser(@RequestBody HashMap<String, String> body) {
+    	 String id = body.get("id");
+    	 String name = body.get("name");
+    	 String email = body.get("email");
+         String password = body.get("password");
+         String role = body.get("role");
+         int userId = Integer.parseInt(id);
+         User user = new User();
+         user.setId(userId);
+         user.setName(name);
+         user.setEmail(email);
+         user.setPassword(password);
+         user.setRole(role);
+         
+         if(user.getRole().equals("user")) {
+        	 userservice.update(user);
+        	 return "updated";
+         }
+         else  if(user.getRole().equals("admin")) {
+        	 userservice.update(user);
+        	 return "admin updated";
+         }
+         
+         else {
+        	 return "no";
+         }
+    }
+    
+   @GetMapping("getallusers")
+   private List<User> getAllUsers(){
+	   return userservice.getAllUsers();   
+   }
+   
+   @DeleteMapping("/deleteuser")
+   private String deleteUserById(@RequestBody HashMap<String, String> body) {
+	   
+	   String userId = body.get("id");
+	   
+	   int id = Integer.parseInt(userId);
+	   
+	   if (userservice.findUserById(id) != null) {
+		   userservice.deleteUserById(id);           
+		   return "ok";
+	   }
+	   
+	   else {
+		   return "no";
+	   }
+	   
+	   
+	   
+   }
 }

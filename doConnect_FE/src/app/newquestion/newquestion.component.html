@@ -1,4 +1,20 @@
-<app-header [links]="['Questions', 'NewQuestions']" [inHome]="true"></app-header>
+<mat-toolbar  color="accent">
+  <mat-toolbar-row class="fixed-header">
+
+   
+     <img src="https://cdn.doconnect.fr/wp-content/uploads/2021/01/doconnect-logo-doconnect-google-avis-clients-supprimer-un-avis-google-laisser-un-avis-google-my-business.png" alt="Logo"  style="width: 10%"/>   
+     
+    <h1>DoConnect</h1>
+    <span class="menu-spacer"></span>
+    <div class="d1">
+      <a mat-button  [routerLink]="'/AdminDashBoard'"> AdminDashBoard </a>
+      <a mat-button [routerLink]="'/Questions'"> Questions </a>
+      <a mat-button [routerLink]="'/DeleteUser'"> DeleteUser </a>
+      <a mat-button [routerLink]="'/UpdateAdmin'"> UpdateAdmin </a>
+      <a mat-button [routerLink]="'/'"> Logout </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 <div style="margin-top: 10vh; max-width: 50vw; margin-left: 25vw">
   <mat-card>
     <mat-card-title>Questions</mat-card-title>

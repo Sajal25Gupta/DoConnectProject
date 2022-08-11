@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService:UserService, private router:Router, private bar: MatSnackBar) { }
 
+  public showPassword: boolean = false;
+
   email: string = '';
   password: string = '';
   role:string="";
@@ -22,8 +24,20 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.userService.login({email: this.email,password: this.password,role:this.role}).then(
       (res) => {
+        console.log(res);
         if (res === 'admin') {
-          this.router.navigate(['admindashboard']);
+    
+          this.userService.getUserByEmail(this.email).then(
+            (res) => {
+              if(res !== null){
+                localStorage.setItem('name', res.name);
+                localStorage.setItem('email', res.email);
+                localStorage.setItem('userId', res.id);
+                localStorage.setItem('role',res.role);
+              }
+            }
+          ).then(() => this.router.navigate(['AdminDashBoard']));
+          
         } 
         else if (res === 'user') {
           this.userService.getUserByEmail(this.email)
@@ -40,6 +54,10 @@ export class LoginComponent implements OnInit {
           this.bar.open('Please Check the credentials', 'Close', {duration: 3000,});
         }
       });
+  }
+
+  public togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
 }

@@ -1,0 +1,47 @@
+package com.greatlearning.service;
+
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+import com.greatlearning.entity.Question;
+import com.greatlearning.entity.User;
+import com.greatlearning.repository.UserRepository;
+
+
+@Service
+public class EmailService {
+
+	@Autowired
+	private JavaMailSender javaMailSender;
+	
+	@Autowired
+	private UserRepository userRepo;
+
+	
+
+	public void sendEmailForNewQuestion(Question question) {
+		User adminAccount = userRepo.findFirstByEmail("mokaphalgun59@gmail.com");
+		
+		System.out.println(adminAccount);
+		
+		//System.out.println(adminAccount.getEmail());
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(adminAccount.getEmail());
+		msg.setSubject("New Question Posted by " + question.getUserName());
+		msg.setText("Topic : " + question.getTopic() + System.lineSeparator() + question.getQuestion()
+				+ System.lineSeparator() + "Date : " + question.getCreated());
+		javaMailSender.send(msg);
+		
+
+	}
+
+	
+
+}

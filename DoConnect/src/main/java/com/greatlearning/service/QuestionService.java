@@ -3,10 +3,14 @@ package com.greatlearning.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.greatlearning.entity.Question;
 import com.greatlearning.repository.QuestionRepository;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -62,5 +66,30 @@ public class QuestionService {
     public List<String> getDistinctByTopic() {
         return questionRepository.getDistinctTopic();
     }
+    
+    
+	public int storeImage(MultipartFile file, int id) {
+		try {
+			//path to store images posted by user for Questions
+			Path getPath=  Paths.get("E:\\Wipro_Training\\Project_New\\doConnect_FE\\src\\assets\\Questions");
+			Files.copy(file.getInputStream(), getPath.resolve(file.getOriginalFilename()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 1;
+	}
+	
+	public int storeImageForAnswer(MultipartFile file, int id) {
+		try {
+			//path to store images posted by user for Answers
+			Path getPath=  Paths.get("E:\\Wipro_Training\\Project_New\\doConnect_FE\\src\\assets\\Answers");
+			Files.copy(file.getInputStream(), getPath.resolve(file.getOriginalFilename()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 1;
+	}
 
 }

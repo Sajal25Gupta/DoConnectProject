@@ -38,4 +38,13 @@ export class UserService {
     ).then((res) => res.json());
   }
 
+  updateUser(data:any):Promise<any>{
+
+    return fetch(this.apiUrl+ 'updateuser', {method: 'POST',body: JSON.stringify(data),headers: {'Content-type': 'application/json',},})
+    .then((res) => res.text());
+  }
+
+ 
+  
+
 }

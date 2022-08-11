@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
+ 
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   apiUrl:string = "http://localhost:8081/"
 
@@ -40,5 +43,20 @@ export class QuestionService {
       res.json()
     );
   }
+
+  uploadFile(file:any,id:number):Observable<any>{
+   
+    const data:FormData=new FormData();
+    data.append('file',file);
+     return this.http.post(this.apiUrl+"fileupload/"+id,data);
+  }
+
+  uploadFileForAnswer(file:any,id:number):Observable<any>{
+   
+    const data:FormData=new FormData();
+    data.append('file',file);
+     return this.http.post(this.apiUrl+"fileuploadforanswer/"+id,data);
+  }
+
 
 }

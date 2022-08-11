@@ -9,6 +9,8 @@ import com.greatlearning.entity.User;
 import com.greatlearning.repository.UserRepository;
 
 import javax.persistence.Id;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +19,8 @@ public class UserService {
     private UserRepository userRepository;
 
     public boolean isExists(String email, String password) {
+    	System.out.println(userRepository.findByPassword(password));
+    	System.out.println(userRepository.findByEmail(email) != null);
         return userRepository.findByPassword(password) != null && userRepository.findByEmail(email) != null;
     }
 
@@ -30,6 +34,7 @@ public class UserService {
     }
 
     public void update(User u) {
+    	
         userRepository.save(u);
     }
 
@@ -42,7 +47,7 @@ public class UserService {
     }
 
     public User getById(int id) {
-        return userRepository.findById(id).get();
+        return userRepository.findById(id);
     }
 
     public List<String> getByDistinct(String name) {
@@ -53,4 +58,26 @@ public class UserService {
     	return userRepository.findByRole(role);
     }
     
+   public List<User> getAllUsers(){
+	   List<User> allUserList  = userRepository.findAll();
+	   List<User> userList = new ArrayList<User>();
+	   
+	   for(User user: allUserList) {
+		   if(user.getRole().equals("user")) {
+			   userList.add(user);
+		   }
+	   }
+	   
+	   return userList;
+   }
+   
+   public void deleteUserById(int id) {
+	   userRepository.deleteById(id);;
+   }
+   
+   public User findUserById(int id) {
+	   User user = userRepository.findById(id);
+	   return user;
+	   
+   }
 }

@@ -3,6 +3,7 @@ package com.greatlearning.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.greatlearning.entity.Question;
 import com.greatlearning.service.QuestionService;
@@ -118,6 +119,18 @@ public class QuestionController {
     private List<String> getDistinctTopics() {
         return questionService.getDistinctByTopic();
     }
+    
+	@PostMapping("/fileupload/{stid}")
+	public int fileUpload(@PathVariable int stid,@RequestParam MultipartFile file)
+	{
+		return questionService.storeImage(file, stid);
+	}
+	
+	@PostMapping("/fileuploadforanswer/{stid}")
+	public int fileUploadForAnswer(@PathVariable int stid,@RequestParam MultipartFile file)
+	{
+		return questionService.storeImageForAnswer(file, stid);
+	}
 }
 
 

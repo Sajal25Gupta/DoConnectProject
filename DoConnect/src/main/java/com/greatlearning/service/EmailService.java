@@ -1,6 +1,7 @@
 package com.greatlearning.service;
 
-import java.sql.Date;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,10 +28,14 @@ public class EmailService {
 	public void sendEmailForNewQuestion(Question question) {
 		User adminAccount = userRepo.findFirstByEmail("mokaphalgun59@gmail.com");
 		
+		System.out.println(adminAccount);
+		
+		System.out.println(adminAccount.getEmail());
+		
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setTo(adminAccount.getEmail());
 		msg.setSubject("New Question Posted by " + question.getUserName());
-		msg.setText("Topic : " + question.getTopic() + System.lineSeparator() + question.getQuestion()
+		msg.setText("Topic : " + question.getTopic() + System.lineSeparator() + question.getQuestion() +" ?" 
 				+ System.lineSeparator() + "Date : " + question.getCreated());
 		javaMailSender.send(msg);
 		

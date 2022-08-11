@@ -1,7 +1,25 @@
-<app-header [inHome]="true" [links]="['UserDashBoard','QuestionDashBoard', 'Chat']"></app-header>
+
+
+<mat-toolbar  color="accent">
+    <mat-toolbar-row class="fixed-header">
+  
+     
+       <img src="https://cdn.doconnect.fr/wp-content/uploads/2021/01/doconnect-logo-doconnect-google-avis-clients-supprimer-un-avis-google-laisser-un-avis-google-my-business.png" alt="Logo"  style="width: 10%"/>   
+       
+      <h1>DoConnect</h1>
+      <span class="menu-spacer"></span>
+      <div class="d1">
+        <a mat-button [routerLink]="'/UserDashBoard'"> UserDashBoard </a>
+        <a mat-button [routerLink]="'/QuestionDashBoard'"> QuestionDashBoard </a>
+        <a mat-button [routerLink]="'/Chat'"> Chat </a>
+        <a mat-button [routerLink]="'/UserUpdate'"> UserUpdate </a>
+        <a mat-button [routerLink]="'/'"> Logout </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 <br />
-<br />
-<br />
+
+
 <mat-card class="example-card" style="margin-left: 40vw">
     
     <h1 mat-dialog-title>Question</h1>
@@ -19,7 +37,9 @@
 
             
             <div class="form-outline mb-4">
-                <input type="file" id="image" class="form-control" (change)="selectFile($event)" />
+                <input type="file" id="image" class="form-control" (change)="selectFile($event)" /><br />
+        
+                <button mat-raised-button  color="accent" (click)="uploadFile()">Upload File</button>
             </div>
             <br />
             <br />

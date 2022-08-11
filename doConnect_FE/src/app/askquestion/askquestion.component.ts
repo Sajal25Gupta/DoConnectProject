@@ -15,6 +15,9 @@ export class AskquestionComponent implements OnInit {
   topic: string = '';
   selectedFiles!: FileList;
   filetoupload!: File;
+  userid = localStorage.getItem("userId")!;
+  id:number = parseInt(this.userid);
+
 
 
   ngOnInit(): void {
@@ -38,6 +41,33 @@ export class AskquestionComponent implements OnInit {
   {
   
      this.selectedFiles=event.target.files;
+  }
+
+  uploadFile(){
+
+    const filedet:File | null=this.selectedFiles.item(0);
+    this.filetoupload=filedet!;
+    this.questionService.uploadFile( this.filetoupload,this.id).subscribe(
+      (response)=>{
+        console.log(response.json);
+
+        if(response != null){
+          
+        this.bar.open('File Uploded Successfully', 'Close', {
+          duration: 3000,
+        });
+
+        }
+
+        else{
+          this.bar.open('Unable to Upload', 'Close', {
+            duration: 3000,
+          });
+        }
+       
+
+      })
+    
   }
 
 }

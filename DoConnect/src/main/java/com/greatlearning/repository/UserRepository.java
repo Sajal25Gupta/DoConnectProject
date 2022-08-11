@@ -20,6 +20,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findFirstByEmail(String email);
     
+    User findById(int id);
+    
     @Query("SELECT u.name FROM User u WHERE u.name!=:name AND u.role!='admin' ")
     List<String> getByUniqueUser(@Param("name") String name);
+    
+    
 }

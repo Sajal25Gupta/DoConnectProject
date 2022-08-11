@@ -32,4 +32,16 @@ export class AdminService {
       method: 'GET',
     }).then((res) => res.text());
   }
+
+  getUsers(): Promise<Body> {
+    return fetch(this.url + 'getallusers', {
+      method: 'GET',
+    }).then((res) => res.json());
+  }
+
+  deleteUser(data:any):Promise<any>{
+    return fetch(this.url+ 'deleteuser', {method: 'DELETE',body: JSON.stringify(data),headers: {'Content-type': 'application/json',},})
+    .then((res) => res.text());
+  }
+
 }
